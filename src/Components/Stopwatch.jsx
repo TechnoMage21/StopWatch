@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import './Stopwatch.css';
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
+
 function Stopwatch() {
   const [watch, setWatch] = useState({
     minute: 0,
     second: 0,
     milisecond: 0,
   });
-  const [captureTime,setCaptures] = useState([]);
-
+  const [captureTime, setCaptures] = useState([]);
   const [running, setRunning] = useState(false);
   const [pause, setPause] = useState(false);
 
@@ -37,7 +37,6 @@ function Stopwatch() {
   const handleStart = (e) => {
     e.preventDefault();
     setRunning(true);
-    console.log(watch.milisecond + watch.second + watch.minute);
     setPause(false);
   };
 
@@ -49,48 +48,52 @@ function Stopwatch() {
 
   const handleCapture = (e) => {
     e.preventDefault();
-    setCaptures([...captureTime,watch]);
-    console.log(captureTime)
+    setCaptures((prevCaptures) => [
+      ...prevCaptures,
+      watch,
+    ]);
   };
 
-  const handleReset = (e)=>{
+  const handleReset = (e) => {
     e.preventDefault();
-    setWatch({milisecond:0,second:0,minute:0});
+    setWatch({ milisecond: 0, second: 0, minute: 0 });
     setRunning(false);
     setPause(false);
     setCaptures([]);
-  }
+  };
+
   return (
     <>
-    <div className="stopwatch">
-      <h2>Stop Watch <span><TimerOutlinedIcon style={{fontSize:'inherit'}}/></span></h2>
-      <div className="display">
-        {watch.minute.toString().padStart(2, "0")} :
-        {watch.second.toString().padStart(2, "0")} :
-        {watch.milisecond.toString().padStart(2, "0")}
-      </div>
-      <div className="buttons">
-        {!running ? (
-          <button onClick={handleStart}>Start</button>
-        ) : (
-          <div className="pause-capture">
-            <button onClick={handlePause}>Pause</button>
-            <button onClick={handleCapture}>Capture</button>
-          </div>
-        )}
-        {pause ? <button onClick={handleReset}>Reset</button> : ""}
-      </div>
-
-      
-      <div className="captures">
-    
-        {captureTime.map((item,index)=>(
-          <li key={index}>{item.minute.toString().padStart(2,0)}:{item.second.toString().padStart(2,0)}:{item.milisecond.toString().padStart(2,0)}</li>
-
-        ))}
-      </div>
+      <div className="stopwatch">
+        <h2>Stopwatch <TimerOutlinedIcon style={{ fontSize: 'inherit' }} /></h2>
+        <div className="display">
+          {watch.minute.toString().padStart(2, "0")}:
+          {watch.second.toString().padStart(2, "0")}:
+          {watch.milisecond.toString().padStart(2, "0")}
+        </div>
+        <div className="buttons">
+          {!running ? (
+            <button className="start-btn" onClick={handleStart}>Start</button>
+          ) : (
+            <div className="pause-capture">
+              <button className="pause-btn" onClick={handlePause}>Pause</button>
+              <button className="capture-btn" onClick={handleCapture}>Capture</button>
+            </div>
+          )}
+          {pause && <button className="reset-btn" onClick={handleReset}>Reset</button>}
+        </div>
+        
+        <div className="captures">
+          {captureTime.length > 0 && <h3>Captured Times</h3>}
+          <ul>
+            {captureTime.map((item, index) => (
+              <li key={index}>{`${item.minute.toString().padStart(2, "0")}:${item.second.toString().padStart(2, "0")}:${item.milisecond.toString().padStart(2, "0")}`}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
 }
+
 export default Stopwatch;

@@ -1,13 +1,40 @@
+/* Global Styles */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* System font stack for better performance */
+  -webkit-font-smoothing: antialiased; /* Smooth fonts for WebKit browsers */
+  -moz-osx-font-smoothing: grayscale; /* Smooth fonts for Firefox on macOS */
+  background-color: #f4f4f4; /* Neutral background color for better readability */
+  color: #333; /* Dark text color for better contrast */
+  line-height: 1.6; /* Improve readability */
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
+/* Code styling */
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
+  background-color: #f4f4f4; /* Light background for code to make it stand out */
+  color: #d6336c; /* Slightly pinkish color for better contrast */
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 1.1em; /* Slightly larger text for better readability */
+  white-space: nowrap; /* Prevent line breaks within code */
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1); /* Soft shadow for the code block */
+  word-wrap: break-word; /* Allow code to break onto the next line if it's too long */
+  display: inline-block; /* Ensures code looks like inline text but still has background styling */
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Adjust font size for smaller devices */
+  }
+  
+  code {
+    font-size: 1em; /* Adjust code size for smaller devices */
+  }
 }

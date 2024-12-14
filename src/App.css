@@ -1,3 +1,17 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif; /* Use a clean modern font */
+  background: linear-gradient(135deg, #4b6cb7, #182848); /* Add gradient background */
+  color: #fff;
+  overflow-x: hidden;
+}
+
 .App {
   text-align: center;
 }
@@ -5,8 +19,15 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
 
+.App-logo:hover {
+  transform: rotate(360deg); /* Adds a hover effect */
+  filter: brightness(1.2); /* Slightly brighten the logo when hovered */
+}
+
+/* Logo spin animation for users who don't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -14,7 +35,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Vibrant gradient background */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,10 +43,36 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 10px solid #fff; /* Add a white border at the bottom for more structure */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
+.App-header h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  letter-spacing: 2px; /* Slight letter spacing for a more modern look */
 }
 
 .App-link {
   color: #61dafb;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.App-link:hover {
+  color: #21a1f1; /* Change color on hover */
+  transform: scale(1.1); /* Slightly increase the size for feedback */
+}
+
+.App-link:active {
+  transform: scale(1); /* Reset scale when active */
 }
 
 @keyframes App-logo-spin {
@@ -34,5 +81,43 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  .App-logo {
+    height: 30vmin;
+  }
+
+  .App-header {
+    padding: 20px;
+    font-size: calc(12px + 3vmin);
+  }
+
+  .App-header h1 {
+    font-size: 36px;
+  }
+
+  .App-link {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    padding: 15px;
+  }
+
+  .App-logo {
+    height: 25vmin;
+  }
+
+  .App-header h1 {
+    font-size: 28px;
+  }
+
+  .App-link {
+    font-size: 14px;
   }
 }
